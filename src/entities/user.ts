@@ -1,3 +1,4 @@
+import { WithId } from '../types/id';
 import { ImageData } from '../types/imageData';
 import { Book } from './book';
 
@@ -14,4 +15,4 @@ export type UserNoId = UserLogin & {
   booksToRead: Book[];
 };
 
-export type User = UserNoId & UserLogin;
+export type User = UserNoId & WithId;
