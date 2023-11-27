@@ -1,4 +1,4 @@
-import { Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { Book } from '../entities/book';
 
 const bookSchema = new Schema<Book>({
@@ -38,3 +38,12 @@ const bookSchema = new Schema<Book>({
     type: Number,
   },
 });
+
+bookSchema.set('toJSON', {
+  transform(_document, returnedObject) {
+    returnedObject.id = returnedObject._id;
+    delete returnedObject._id;
+    delete returnedObject.__v;
+  },
+});
+export const BookModel = model('Book', bookSchema, 'books');
