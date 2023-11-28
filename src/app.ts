@@ -3,6 +3,7 @@ import createDebug from 'debug';
 import express, { NextFunction, Request, Response } from 'express';
 import morgan from 'morgan';
 import { errorMiddleware } from './middleware/error.middleware';
+import { userRouter } from './router/user.router';
 import { HttpError } from './types/error';
 
 const debug = createDebug('Nexus: App');
@@ -16,8 +17,11 @@ app.use(express.static('public'));
 
 debug('Started');
 
+app.use('./user', userRouter);
+
 app.use('/:id', (_req: Request, _res: Response, next: NextFunction) => {
   const error = new HttpError(404, 'Not found', 'Invalid route');
   next(error);
 });
+
 app.use(errorMiddleware);
