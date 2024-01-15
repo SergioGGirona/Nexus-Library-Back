@@ -1,5 +1,6 @@
-import { WithId } from '../types/id';
-import { User } from './user';
+import { WithId } from '../types/id.js';
+import { Comment } from './comment.js';
+import { User } from './user.js';
 
 export type Book = WithId & {
   title: string;
@@ -11,4 +12,5 @@ export type Book = WithId & {
   secondCategories: string[];
   readers: User[];
   averageRate: number;
+  comments: Comment[];
 };

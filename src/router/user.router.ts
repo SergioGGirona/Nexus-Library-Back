@@ -1,16 +1,17 @@
-import { Router } from 'express';
-import { UserController } from '../controller/user.controller';
-import { AuthInterceptor } from '../middleware/auth.interceptor';
-import { FilesInterceptor } from '../middleware/files.interceptor';
-import { UsersRepository } from '../repository/users.repository';
+import { Router as createRouter } from 'express';
+import { UserController } from '../controller/user.controller.js';
+import { AuthInterceptor } from '../middleware/auth.interceptor.js';
+import { FilesInterceptor } from '../middleware/files.interceptor.js';
+import { UsersRepository } from '../repository/users.repository.js';
 
 const repository = new UsersRepository();
 const userController = new UserController(repository);
 const filesInterceptor = new FilesInterceptor();
-export const userRouter = Router();
+export const userRouter = createRouter();
 const authInterceptor = new AuthInterceptor();
 
 userRouter.get('/', userController.getAll.bind(userController));
+userRouter.get('/:id', userController.getById.bind(userController));
 
 userRouter.post(
   '/register',

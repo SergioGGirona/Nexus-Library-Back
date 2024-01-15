@@ -1,7 +1,7 @@
-import { User } from '../entities/user';
-import { HttpError } from '../types/error';
-import { Repository } from './repository';
-import { UserModel } from './users.model';
+import { User } from '../entities/user.js';
+import { HttpError } from '../types/error.js';
+import { Repository } from './repository.js';
+import { UserModel } from './users.model.js';
 
 export class UsersRepository implements Repository<User> {
   async getAll(): Promise<User[]> {

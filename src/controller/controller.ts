@@ -21,4 +21,14 @@ export abstract class Controller<N extends { id: string }> {
       next(error);
     }
   }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+      const finalItem = await this.repository.update(id, req.body);
+      res.json(finalItem);
+    } catch (error) {
+      next(error);
+    }
+  }
 }

@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
-import { User, UserLogin } from '../entities/user';
-import { UsersRepository } from '../repository/users.repository';
-import { Auth } from '../services/auth';
-import { CloudinaryService } from '../services/media.files';
-import { HttpError } from '../types/error';
-import { TokenPayload } from '../types/token';
-import { Controller } from './controller';
+import { User, UserLogin } from '../entities/user.js';
+import { UsersRepository } from '../repository/users.repository.js';
+import { Auth } from '../services/auth.js';
+import { CloudinaryService } from '../services/media.files.js';
+import { HttpError } from '../types/error.js';
+import { TokenPayload } from '../types/token.js';
+import { Controller } from './controller.js';
 
 export class UserController extends Controller<User> {
   cloudinary: CloudinaryService;
@@ -44,7 +44,7 @@ export class UserController extends Controller<User> {
           'You must provide a photo'
         );
       req.body.password = await Auth.encrypt(req.body.password);
-      const newPath = req.file.destination + '/' + req.file.filename;
+      const newPath = req.file.destination + '/Nexus/' + req.file.filename;
       const photoData = await this.cloudinary.uploadPhoto(newPath);
       req.body.avatar = photoData;
 

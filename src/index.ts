@@ -1,4 +1,5 @@
 import createDebug from 'debug';
+import 'dotenv/config';
 import { createServer } from 'http';
 import { app } from './app.js';
 import { dbConnect } from './db/database.connect.js';
@@ -16,6 +17,7 @@ dbConnect()
   })
   .catch((error) => {
     server.emit('error', error);
+    debug('Error in the conection of db');
   });
 
 server.on('listening', () => {

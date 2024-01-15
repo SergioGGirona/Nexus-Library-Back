@@ -11,5 +11,7 @@ export default {
     'app.ts',
     'users.model.ts',
     'books.model.ts',
+    'comments.model.ts',
+    'user.router.ts',
   ],
 };

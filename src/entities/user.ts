@@ -1,6 +1,6 @@
-import { WithId } from '../types/id';
-import { ImageData } from '../types/imageData';
-import { Book } from './book';
+import { WithId } from '../types/id.js';
+import { ImageData } from '../types/imageData.js';
+import { Book } from './book.js';
 
 export type UserLogin = {
   email: string;

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { UsersRepository } from '../repository/users.repository';
-import { Auth } from '../services/auth';
-import { HttpError } from '../types/error';
+import { UsersRepository } from '../repository/users.repository.js';
+import { Auth } from '../services/auth.js';
+import { HttpError } from '../types/error.js';
 
 export class AuthInterceptor {
   authorization(req: Request, res: Response, next: NextFunction) {

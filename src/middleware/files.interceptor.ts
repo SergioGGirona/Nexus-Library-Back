@@ -1,10 +1,16 @@
+import createDebug from 'debug';
+
 import { NextFunction, Request, Response } from 'express';
 import multer from 'multer';
 
+const debug = createDebug('Nexus: Files Interceptor');
+
 export class FilesInterceptor {
   singleFileStore(file: string) {
+    debug('Called multer');
+
     const storage = multer.diskStorage({
-      destination: './NexusLibrary',
+      destination: './Nexus',
       filename(req, file, callback) {
         callback(null, file.originalname);
       },
