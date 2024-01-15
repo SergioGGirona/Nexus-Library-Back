@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import { Book } from '../entities/book';
+import { Book } from '../entities/book.js';
 
 const bookSchema = new Schema<Book>({
   title: {
@@ -36,6 +36,9 @@ const bookSchema = new Schema<Book>({
   ],
   averageRate: {
     type: Number,
+  },
+  comments: {
+    type: [String],
   },
 });
 

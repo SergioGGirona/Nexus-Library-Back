@@ -1,7 +1,7 @@
-import { Book } from '../entities/book';
-import { HttpError } from '../types/error';
-import { BookModel } from './books.model';
-import { Repository } from './repository';
+import { Book } from '../entities/book.js';
+import { HttpError } from '../types/error.js';
+import { BookModel } from './books.model.js';
+import { Repository } from './repository.js';
 
 export class BooksRepository implements Repository<Book> {
   async getAll(): Promise<Book[]> {

@@ -1,6 +1,6 @@
 import cloudinaryBase from 'cloudinary';
-import { HttpError } from '../types/error';
-import { CloudinaryError, ImageData } from '../types/imageData';
+import { HttpError } from '../types/error.js';
+import { CloudinaryError, ImageData } from '../types/imageData.js';
 
 export class CloudinaryService {
   private cloudinary: typeof cloudinaryBase.v2;
