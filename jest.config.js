@@ -13,5 +13,6 @@ export default {
     'books.model.ts',
     'comments.model.ts',
     'user.router.ts',
+    'book.router.ts',
   ],
 };

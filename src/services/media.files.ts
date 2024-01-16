@@ -14,6 +14,7 @@ export class CloudinaryService {
       use_filename: true,
       unique_filename: true,
       overwrite: true,
+      folder: 'Nexus',
     };
     try {
       const upload = await this.cloudinary.uploader.upload(imagePath, options);

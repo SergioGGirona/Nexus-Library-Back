@@ -26,7 +26,7 @@ export abstract class Controller<N extends { id: string }> {
     try {
       const { id } = req.params;
       const finalItem = await this.repository.update(id, req.body);
-      res.json(finalItem);
+      res.status(200).json(finalItem);
     } catch (error) {
       next(error);
     }

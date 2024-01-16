@@ -44,7 +44,7 @@ export class UserController extends Controller<User> {
           'You must provide a photo'
         );
       req.body.password = await Auth.encrypt(req.body.password);
-      const newPath = req.file.destination + '/Nexus/' + req.file.filename;
+      const newPath = req.file.destination + '/' + req.file.filename;
       const photoData = await this.cloudinary.uploadPhoto(newPath);
       req.body.avatar = photoData;
 
@@ -61,6 +61,7 @@ export class UserController extends Controller<User> {
       const { id } = req.params;
       await this.repository.delete(id);
       res.status(204);
+      res.json({});
     } catch (error) {
       next(error);
     }

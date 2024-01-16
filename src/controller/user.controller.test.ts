@@ -13,12 +13,13 @@ describe('Given the class UserController', () => {
     let userController: UserController;
     beforeEach(() => {
       mockRepository = {
-        getAll: jest.fn().mockResolvedValue([mockUser]),
-        getById: jest.fn().mockResolvedValue(mockUser),
-        create: jest.fn().mockResolvedValue(mockUser),
-        search: jest.fn().mockResolvedValue(mockUser),
+        getAll: jest.fn().mockResolvedValueOnce([mockUser]),
+        getById: jest.fn().mockResolvedValueOnce(mockUser),
+        create: jest.fn().mockResolvedValueOnce(mockUser),
+        search: jest.fn().mockResolvedValueOnce(mockUser),
         register: jest.fn(),
         delete: jest.fn(),
+        update: jest.fn().mockResolvedValueOnce(mockUser),
       } as unknown as UsersRepository;
       userController = new UserController(mockRepository);
     });
@@ -47,6 +48,13 @@ describe('Given the class UserController', () => {
       await userController.getById(mockRequest, mockResponse, mockNextFunction);
       expect(mockRepository.getById).toHaveBeenCalled();
       expect(mockResponse.json).toHaveBeenCalledWith(mockUser);
+    });
+
+    test('Then, it should call update method from father and return data', async () => {
+      Auth.compare = jest.fn().mockResolvedValueOnce(true);
+      Auth.signToken = jest.fn().mockResolvedValueOnce('token');
+      await userController.update(mockRequest, mockResponse, mockNextFunction);
+      expect(mockRepository.update).toHaveBeenCalled();
     });
 
     test('Then, it should call login method and return data', async () => {
@@ -88,6 +96,7 @@ describe('Given the class UserController', () => {
       expect(mockRepository.delete).toHaveBeenCalled();
     });
   });
+
   describe('When we instantiate it with errors', () => {
     let mockErrorRepository: UsersRepository;
     let userController: UserController;

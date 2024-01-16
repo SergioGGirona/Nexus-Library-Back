@@ -23,6 +23,13 @@ userRouter.post(
 );
 
 userRouter.patch('/login', userController.login.bind(userController));
+userRouter.patch(
+  '/:id',
+  authInterceptor.authorization.bind(authInterceptor),
+  authInterceptor.usersAuthentication.bind(authInterceptor),
+  userController.update.bind(userController)
+);
+
 userRouter.delete(
   '/:id',
   authInterceptor.authorization.bind(authInterceptor),
